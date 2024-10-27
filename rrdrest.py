@@ -32,3 +32,10 @@ async def get_rrd(rrd_path: str, epoch_start_time: Optional[int] = None, epoch_e
         except Exception as e:
             HTTPException(status_code=500, detail=f"{e}")
     raise HTTPException(status_code=404, detail="RRD not found")
+
+@rrd_rest.get(
+    "/health",
+    summary="Health check endpoint"
+)
+async def health_check():
+    return {"status": "OK"}
